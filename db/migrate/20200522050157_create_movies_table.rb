@@ -3,5 +3,6 @@ class CreateMoviesTable < ActiveRecord::Migration
     create_table :movies do |t|
       t.string :name
       t.timestamps null: false
+    end
   end
 end
