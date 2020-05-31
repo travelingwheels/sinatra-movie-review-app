@@ -1,0 +1,7 @@
+This is the all reviews page!!!!<br><br>
+
+<% @reviews.each do |review| %>
+
+<li><%= review.movie_name %> - <%= review.content %> by: <%= review.user.name %></li>
+
+<% end %>
