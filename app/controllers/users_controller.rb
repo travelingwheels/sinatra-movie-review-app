@@ -20,7 +20,11 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
+    if logged_in?
+      redirect :'users/show'
+    else
     erb :'users/signup'
+   end
   end
 
   post '/users' do
@@ -35,7 +39,7 @@ class UsersController < ApplicationController
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
-      binding.pry
+      #binding.pry
     erb :'/users/show'
   end
 
