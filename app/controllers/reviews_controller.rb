@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
       @reviews = Review.all
       erb :'reviews/index'
     else
-      redirect '/users/login'
+      redirect :'/users/login'
     end
   end
 
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     if logged_in?
       erb :'reviews/new'
     else
-      redirect '/users/login'
+      redirect :'/users/login'
     end
   end
 
