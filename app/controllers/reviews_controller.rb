@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
     if logged_in?
       @reviews = Review.all
       erb :'reviews/index'
+    else
+      redirect '/users/login'
     end
   end
 
