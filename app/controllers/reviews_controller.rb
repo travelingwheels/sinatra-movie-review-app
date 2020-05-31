@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   get'/reviews' do
     if logged_in?
       @reviews = Review.all
+      binding.pry
       erb :'reviews/index'
     else
       redirect :'/users/login'
