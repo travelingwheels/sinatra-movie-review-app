@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
 
 
-  get'/reviews' do
+  get'/reviews/index' do
     if logged_in?
       @reviews = Review.all
-      binding.pry
+      #binding.pry
       erb :'reviews/index'
     else
       redirect :'/users/login'
@@ -13,9 +13,9 @@ class ReviewsController < ApplicationController
 
   get'/reviews/new' do
     if logged_in?
-      erb :'reviews/new'
+      erb :'/reviews/new'
     else
-      redirect :'/users/login'
+      redirect :'users/login'
     end
   end
 
