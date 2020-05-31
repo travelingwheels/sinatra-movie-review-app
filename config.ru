@@ -6,6 +6,6 @@ end
 
 use Rack::MethodOverride
 
-use ReviewsController
 use UsersController
+use ReviewsController
 run ApplicationController
