@@ -15,13 +15,13 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect :"users/#{@user.id}"
     else
-      redirect :'users/signup'
+      redirect :'/users/signup'
     end
   end
 
   get '/signup' do
     if logged_in?
-      redirect :'users/show'
+      redirect :'/users/show'
     else
     erb :'users/signup'
    end
@@ -33,14 +33,14 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
         redirect :"/users/#{@user.id}"
       else
-         redirect :'users/signup'
+         redirect :'/users/signup'
     end
   end
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
       #binding.pry
-    erb :'/users/show'
+    erb :'users/show'
   end
 
   get '/logout' do
