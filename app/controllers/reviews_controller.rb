@@ -51,4 +51,18 @@ class ReviewsController < ApplicationController
       @review = Review.find_by_id(params[:id])
       erb:'reviews/show'
   end
+
+  #route for updating
+  get '/reviews/:id/edit' do
+     if logged_in?
+       @review = Review.find_by_id(params[:id])
+       if @reviews && @reviews.user == current_user
+         erb :'reviews/edit'
+       else
+         redirect to '/reviews'
+       end
+     else
+       redirect to '/users/login'
+     end 
+  end
 end
