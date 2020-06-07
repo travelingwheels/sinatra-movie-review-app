@@ -65,4 +65,25 @@ class ReviewsController < ApplicationController
        redirect to '/users/login'
      end
   end
+
+  patch '/reviews/:id' do
+    if logged_in?
+      if params[:content] == ""
+        redirect to "reviews/#{params[:id]}/edit"
+      else
+        @review = Review.find_by_id(params[:id])
+        if @review && @review.user == current_user
+          if @review.update(content: params[:content])
+            redirect to "/reviews/#{@review.id}"
+          else
+            redirect to "/reviews/#{@review.id}/edit"
+          end
+        else
+          redirect to '/reviews/index'
+        end
+      end
+    else
+      redirect to '/users/login'
+    end
+  end
 end
