@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
 
-  get'/reviews/index' do
+  get'/reviews/index' do #shows all reviews
     if logged_in?
       @reviews = Review.all
       #binding.pry
@@ -11,15 +11,15 @@ class ReviewsController < ApplicationController
     end
   end
 
-  get'/reviews/user_review' do
+  #get'/reviews/user_review' do
     #if logged_in?
       #@current_user = Review.all
       #binding.pry
-      erb :'reviews/user_review'
+      #erb :'reviews/user_review'
     #else
       #redirect :'/users/login'
     #end
-  end
+  #end
 
   get'/reviews/new' do #sends to erb form to create a new review
     if logged_in?
@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
       erb:'reviews/show'
   end
 
-  #route for updating
+  #route to form for updating
   get '/reviews/:id/edit' do
      if logged_in?
        @review = Review.find_by_id(params[:id])
