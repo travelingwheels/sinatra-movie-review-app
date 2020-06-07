@@ -49,6 +49,7 @@ class ReviewsController < ApplicationController
   #show route for a review
   get '/reviews/:id' do
       @review = Review.find_by_id(params[:id])
+      #binding.pry
       erb:'reviews/show'
   end
 
@@ -59,7 +60,7 @@ class ReviewsController < ApplicationController
        if @review && @review.user == current_user
          erb :'reviews/edit'
        else
-         redirect to '/reviews'
+         redirect to '/reviews/user_review'
        end
      else
        redirect to '/users/login'
@@ -79,7 +80,7 @@ class ReviewsController < ApplicationController
             redirect to "/reviews/#{@review.id}/edit"
           end
         else
-          redirect to '/reviews/index'
+          redirect to '/reviews/user_review'
         end
       end
     else
