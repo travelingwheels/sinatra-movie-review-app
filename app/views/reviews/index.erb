@@ -2,6 +2,10 @@ This is the all reviews page!!!!<br><br>
 
 <% @reviews.each do |review| %>
 
-<li><%= review.movie_name %> - <%= review.content %> by: <%= review.user.name %></li>
+<li><p>Movie:<%= review.movie_name %></p>
 
+    <p><%= review.content %></p>
+
+    <p> by: <%= review.user.name %></p>
+  <p>Created On:<%= review.created_at %></p></li>
 <% end %>
