@@ -48,19 +48,24 @@ class ReviewsController < ApplicationController
 
   #show route for a review
   get '/reviews/:id' do
-      @review = Review.find_by_id(params[:id])
-      #binding.pry
+    if logged_in?
+      @review = Review.find(params[:id])
+      binding.pry
       erb:'reviews/show'
+    else
+      redirect to "/users/login"
+    end
   end
 
   #route to form for updating
   get '/reviews/:id/edit' do
      if logged_in?
-       @review = Review.find_by_id(params[:id])
+       @review = Review.find(params[:id])
        if @review && @review.user == current_user
+         #binding.pry
          erb :'reviews/edit'
        else
-         redirect to '/reviews/user_review'
+         redirect to "/users/#{current_user.id}"
        end
      else
        redirect to '/users/login'
