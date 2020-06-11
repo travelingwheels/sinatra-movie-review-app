@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
   get '/reviews/:id' do
     if logged_in?
       @review = Review.find(params[:id])
-      binding.pry
+      #binding.pry
       erb:'reviews/show'
     else
       redirect to "/users/login"
@@ -91,5 +91,16 @@ class ReviewsController < ApplicationController
     else
       redirect to '/users/login'
     end
+  end
+
+  delete '/reviews/:id/' do
+    if logged_in?
+      @review = Review.find(params[:id])
+      if @review && @review.user == current_user
+        @review.destroy
+        redirect to '/reviews/index'
+      else
+        redirect to '/reviews/index'
+      end 
   end
 end
