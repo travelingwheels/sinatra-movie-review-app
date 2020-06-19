@@ -1,12 +1,9 @@
 <h3><%= @review.movie_name %> - <%= @review.content %> by: <%= @review.user.name %></h3><br><br>
-<a href="/reviews/edit">Edit Review</a>
-
-<!-- <% #if @review.user == current_user %> -->
-  <!-- <a href="/reviews/<% #@review.id %>/edit">Edit Review</a> >
-  <!-- <br><br> -->
-  <!-- <form class="" action="/reviews/<% #@reviews.id %>" method="post"> -->
-
-    <!-- <input type="hidden" name="_method" value="DELETE"> -->
-    <!-- <input type="submit" name="" value="Delete this Review"> -->
-  <!-- </form> -->
-<!-- <%# end %> >
+<% if current_user == @review.user %>
+<a href="/reviews/<%= @review.id %>/edit">Edit Review</a><br>
+<form class="" action="/reviews/<%= @review.id %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Review">
+</form>
+<% end %>
