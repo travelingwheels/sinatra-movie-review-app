@@ -32,12 +32,12 @@ class UsersController < ApplicationController
 
   post '/users' do
     @user = User.new(params)
-    if @user.save
+     if @user.save
       session[:user_id] = @user.id
         flash[:message] = "Success!! You account has been created."
         redirect :"/users/#{@user.id}"
       else
-        flash[:error] = "Sorry, we couldn't create your account: #{@user.errors.full_message.to_sentence}."
+        flash[:error] = "Sorry, we couldn't create your account:#{@user.errors.full_messages.to_sentence}."
         redirect :'/users/signup'
     end
   end
