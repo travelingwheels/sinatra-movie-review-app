@@ -27,8 +27,10 @@ class ReviewsController < ApplicationController
       else
         @review = current_user.reviews.build(movie_name: params[:movie_name], content: params[:content], user_id: params[:user_id])
         if @review.save
+          flash[:message] = "Awesome you just created a new review!"
           redirect to "/reviews/#{@review.id}"
         else
+          flash[:errors] = "oops! We need some more information to create a new review."
           redirect to "/reviews/new"
         end
       end
@@ -71,6 +73,7 @@ class ReviewsController < ApplicationController
         @review = Review.find(params[:id])
         if @review && @review.user == current_user
           if @review.update(content: params[:content])
+            flash[:message] = "Okay got it, you've edited the review."
             redirect to "/reviews/#{@review.id}"
           else
             redirect to "/reviews/#{@review.id}/edit"
@@ -89,6 +92,7 @@ class ReviewsController < ApplicationController
       @review = Review.find_by_id(params[:id])
       if @review && @review.user == current_user
         @review.destroy
+        flash[:message] = "You have successfully deleted that review."
         redirect to '/reviews/index'
       else
         redirect to '/reviews/index'
