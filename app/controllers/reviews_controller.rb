@@ -68,22 +68,17 @@ class ReviewsController < ApplicationController
   patch '/reviews/:id' do
     if logged_in?
       if params[:content] == ""
-        redirect to "reviews/#{params[:id]}/edit"
-      else
-        @review = Review.find(params[:id])
-        if @review && @review.user == current_user
-          if @review.update(content: params[:content])
-            flash[:message] = "Okay got it, you've edited the review."
-            redirect to "/reviews/#{@review.id}"
+         redirect to "/reviews/#{params[:id]}/edit"
+       else
+         @review = Review.find(params[:id])
+          if @review && @review.user == current_user && params[:content] != ""
+              @review.update(content: params[:content])
+             redirect "/reviews/#{@review.id}"
           else
-            redirect to "/reviews/#{@review.id}/edit"
+           redirect "users/#{current_user.id}"
           end
-        else
-          redirect to '/users/show'
-        end
-      end
-    else
-      redirect to '/users/login'
+         redirect '/'
+       end
     end
   end
 
