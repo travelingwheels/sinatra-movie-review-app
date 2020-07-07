@@ -3,4 +3,16 @@
 <h3>What would you like to do today?</h3>
 <li><a href="/reviews/index">See all reviews</li>
 <li><a href="/reviews/new">Create a new review</li>
-<li><a href="/logout">Logout</li>
+<li><a href="/logout">Logout</li><br><br>
+
+<div = container>
+  <div = content>
+  <h3><% @user.reviews.each do |review| %>
+
+  <p>Movie: <a href="/reviews/<%= review.id %>"><%= review.movie_name %></a></p>
+
+      <p>Content: <%= review.content %></p>
+  <% end %></h3>
+
+  </div>
+  </div>
