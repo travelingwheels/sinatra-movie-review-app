@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       flash[:message] = "Welcome back #{@user.name}!"
       redirect :"users/#{@user.id}"
     else
-      flash[:errors] = "We're sorry, but we couldn't validate your credentials,
+      flash[:message] = "We're sorry, but we couldn't validate your credentials,
       please signup or try logging in again"
       redirect :'/users/login'
     end
@@ -37,18 +37,18 @@ class UsersController < ApplicationController
         flash[:message] = "Success!! You account has been created."
         redirect :"/users/#{@user.id}"
       else
-        flash[:errors] = "Sorry, we couldn't create your account:#{@user.errors.full_messages.to_sentence}."
+        flash[:message] = "Sorry, we couldn't create your account:#{@user.errors.full_messages.to_sentence}."
         redirect :'/users/signup'
     end
   end
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
-    if logged_in?
-      erb :'users/show'
+    if !logged_in?
+      redirect '/'
     else
       #binding.pry
-      redirect '/'
+      erb :'users/show'
     end
   end
 
