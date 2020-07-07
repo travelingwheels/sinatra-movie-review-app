@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
           flash[:message] = "Awesome you just created a new review!"
           redirect to "/reviews/#{@review.id}"
         else
-          flash[:errors] = "oops! We need some more information to create a new review."
+          flash[:message] = "oops! We need some more information to create a new review."
           redirect to "/reviews/new"
         end
       end
@@ -67,12 +67,12 @@ class ReviewsController < ApplicationController
 
   patch '/reviews/:id' do
     if logged_in?
-      if params[:content] == ""
+      if params[:content] && params[:movie_name] == ""
          redirect to "/reviews/#{params[:id]}/edit"
        else
          @review = Review.find(params[:id])
           if @review && @review.user == current_user && params[:content] != ""
-              @review.update(content: params[:content])
+              @review.update(content: params[:content], movie_name: params[:movie_name])
              redirect "/reviews/#{@review.id}"
           else
            redirect "users/#{current_user.id}"
