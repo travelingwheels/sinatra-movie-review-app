@@ -67,11 +67,11 @@ class ReviewsController < ApplicationController
 
   patch '/reviews/:id' do
     if logged_in?
-      if params[:content] && params[:movie_name] == ""
+      if params[:movie_name] == "" || params[:content] == "" || params[:user_id] == ""
          redirect to "/reviews/#{params[:id]}/edit"
        else
          @review = Review.find(params[:id])
-          if @review && @review.user == current_user && params[:content] != ""
+          if @review && @review.user == current_user && params[:content] && params[:movie_name] != ""
               @review.update(content: params[:content], movie_name: params[:movie_name])
              redirect "/reviews/#{@review.id}"
           else
