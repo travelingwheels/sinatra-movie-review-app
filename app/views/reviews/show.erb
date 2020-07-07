@@ -1,4 +1,6 @@
-<h3><%= @review.movie_name %> - <%= @review.content %> by: <%= @review.user.name %></h3><br><br>
+<h3>Movie title:<%= @review.movie_name %><br><br>
+   <%= @review.content %><br><br>
+    by: <%= @review.user.name %></h3><br><br>
 <% if current_user == @review.user %>
 <a href="/reviews/<%= @review.id %>/edit">Edit Review</a><br>
 <form class="" action="/reviews/<%= @review.id %>" method="post">
