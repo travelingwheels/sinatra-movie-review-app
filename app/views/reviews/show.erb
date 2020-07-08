@@ -1,8 +1,9 @@
-<h3>Movie title:<%= @review.movie_name %><br><br>
-   <%= @review.content %><br><br>
-    by: <%= @review.user.name %></h3><br><br>
+<h3>Movie title:<%= @review.movie_name %><br>
+<%= @review.content %><br>
+by: <%= @review.user.name %></h3><br><br>
+
 <% if current_user == @review.user %>
-<a href="/reviews/<%= @review.id %>/edit">Edit Review</a><br>
+<a href="/reviews/<%= @review.id %>/edit">Edit Review</a>
 <form class="" action="/reviews/<%= @review.id %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
   <input type="hidden" id="hidden" name="_method" value="DELETE">
