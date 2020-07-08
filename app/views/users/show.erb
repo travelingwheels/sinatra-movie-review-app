@@ -1,18 +1,21 @@
 <h1>Welcome <%= @user.name %> to Movie Reviews!</h1>
 
 <h3>What would you like to do today?</h3>
-<li><a href="/reviews/index">See all reviews</li>
-<li><a href="/reviews/new">Create a new review</li>
-<li><a href="/logout">Logout</li><br><br>
+<ul>
+  <li><a href="/reviews/new">Create a new review</a></li>
+  <li><a href="/reviews/index">See all reviews</a></li>
+</ul><br><br>
+<h3>If you want to edit one of your reviews, click on the title.</h3><br>
+
 
 <div = container>
   <div = content>
-  <h3><% @user.reviews.each do |review| %>
+  <h4><% @user.reviews.each do |review| %>
 
-  <p>Movie: <a href="/reviews/<%= review.id %>"><%= review.movie_name %></a></p>
+  Movie: <a href="/reviews/<%= review.id %>"><%= review.movie_name %></a><br>
 
-      <p>Content: <%= review.content %></p>
-  <% end %></h3>
+      <p><%= review.content %></p>
+  <% end %></h4>
 
   </div>
   </div>
