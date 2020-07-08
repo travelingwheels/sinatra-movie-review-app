@@ -1,10 +1,9 @@
-<h1>Edit your Review </h1>
+<h3>Edit your Review Here</h3><br><br>
 
 <form class="" action="/reviews/<%= @review.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="movie_name">Movie:</label>
-  <input type="text" name="movie_name" value="<%= @review.movie_name %>">
-  <label for="content">Content: </label>
+  <input type="text" name="movie_name" value="<%= @review.movie_name %>"><br><br>
   <textarea name="content" rows="8" cols="80"><%= @review.content %></textarea>
   <input type="submit" name="" value="Edit Entry">
 
