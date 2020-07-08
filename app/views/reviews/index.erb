@@ -1,11 +1,11 @@
-This is the all reviews page!!!!<br><br>
-
+<h1>All reviews</h1><br>
+Click on the created on link to see the review.<br><br>
 <% @reviews.each do |review| %>
 
-<li><p>Movie:<%= review.movie_name %></p>
+<p>Movie:<%= review.movie_name %></p>
 
     <p><%= review.content %></p>
 
-    <p> by: <%= review.user.name %></p>
-  <p>Created On:<a href="/reviews/<%= review.id %>"><%= review.created_at_date_time %></a></p></li>
+    <li> by: <%= review.user.name %></li>
+  <p>Created On:<a href="/reviews/<%= review.id %>"><%= review.created_at_date_time %></a><br><br>
 <% end %>
