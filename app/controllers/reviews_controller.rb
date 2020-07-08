@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
   post'/reviews' do #this route gets info from the reviews/new page
     if logged_in?
       if params[:movie_name] == "" || params[:content] == "" || params[:user_id] == ""
+        flash[:message] = "Sorry, but all fields must be filled out to create a new review."
         redirect to "/reviews/new"
       else
         @review = current_user.reviews.build(movie_name: params[:movie_name], content: params[:content], user_id: params[:user_id])
@@ -30,7 +31,6 @@ class ReviewsController < ApplicationController
           flash[:message] = "Awesome you just created a new review!"
           redirect to "/reviews/#{@review.id}"
         else
-          flash[:message] = "oops! We need some more information to create a new review."
           redirect to "/reviews/new"
         end
       end
@@ -68,11 +68,13 @@ class ReviewsController < ApplicationController
   patch '/reviews/:id' do
     if logged_in?
       if params[:movie_name] == "" || params[:content] == "" || params[:user_id] == ""
+        flash[:message] = "All fields must be filled out to submit your edit."
          redirect to "/reviews/#{params[:id]}/edit"
        else
          @review = Review.find(params[:id])
           if @review && @review.user == current_user && params[:content] && params[:movie_name] != ""
               @review.update(content: params[:content], movie_name: params[:movie_name])
+              flash[:message] = "You have successfully edited your review!"
              redirect "/reviews/#{@review.id}"
           else
            redirect "users/#{current_user.id}"
