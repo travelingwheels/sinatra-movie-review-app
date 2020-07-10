@@ -5,16 +5,15 @@
   <li><a href="/reviews/new">Create a new review</a></li>
   <li><a href="/reviews/index">See all reviews</a></li>
 </ul><br><br>
-<h3>If you want to edit one of your reviews, click on the title.</h3><br>
+<h3>If you want to edit one of your reviews, click on the title.
+If you don't have any listed please create one.</h3><br>
 
 
 <div = container>
   <div = content>
   <h4><% @user.reviews.each do |review| %>
-
-  Movie: <a href="/reviews/<%= review.id %>"><%= review.movie_name %></a><br>
-
-      <p><%= review.content %></p>
+    Movie: <a href="/reviews/<%= review.id %>"><%= review.movie_name %></a><br>
+    <p><%= review.content %></p>
   <% end %></h4>
 
   </div>
